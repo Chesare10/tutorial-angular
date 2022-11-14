@@ -1,0 +1,53 @@
+<div class="container">
+    <h1>Nuevo préstamo</h1>
+
+    <form>
+        <mat-form-field>
+            <mat-label>Identificador</mat-label>
+            <input type="number" matInput placeholder="Identificador" [(ngModel)]="loan.id" name="id" disabled>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nombre del cliente</mat-label>
+            <mat-select disableRipple [(ngModel)]="loan.client" name="client" required>
+                <mat-option *ngFor="let client of clients" [value]="client">{{client.name}}</mat-option>
+            </mat-select>
+            <mat-error>El nombre del cliente no puede estar vacío</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nombre del juego</mat-label>
+            <mat-select disableRipple [(ngModel)]="loan.game" name="game" required>
+                <mat-option *ngFor="let game of games" [value]="game">{{game.title}}</mat-option>
+            </mat-select>
+            <mat-error>El titulo del juego no puede estar vacío</mat-error>
+        </mat-form-field>
+
+        <div class="calendarInputs">
+            <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Fecha de inicio de préstamo</mat-label>
+                    <input matInput [matDatepicker]="pickerLoan" [(ngModel)]="loan.dateLoan" name="dateLoan">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="pickerLoan"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerLoan></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="calendarInputRight">
+                <mat-form-field appearance="standard">
+                    <mat-label>Fecha de fin de préstamo</mat-label>
+                    <input matInput [matDatepicker]="pickerReturn" [(ngModel)]="loan.dateReturn" name="dateReturn">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="pickerReturn"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerReturn></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div> 
+        </form>
+         
+    <div class="buttons">
+        <button mat-stroked-button (click)="onClose()">Cerrar</button>
+        <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 *ngIf="client.id == null"> Crear Cliente </h1>
+    <h1 *ngIf="client.id != null"> Editar Cliente </h1>
+
+    <form>
+        <mat-form-field>
+            <mat-label for="id">Identificador</mat-label>
+            <input matInput type="number" name="id" placeholder="Identificador" disabled [(ngModel)] = "client.id">
+            <mat-error>El identificador no puede quedar vacío</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label for="name">Nombre del cliente</mat-label>
+            <input matInput type="text" name="name" placeholder="Identificador" required [(ngModel)] = "client.name">
+            <mat-error>El nombre no puede quedar vacío</mat-error>
+        </mat-form-field>
+
+        <div class="buttons">
+            <button mat-stroked-button (click) = "onClose()">Cerrar</button>
+            <button mat-flat-button color="primary" (click) = "onSave()">Guardar</button>
+        </div>
+    </form>
+</div>
